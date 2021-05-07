@@ -10,7 +10,7 @@ import java.util.List;
 @RestController
 public class EmployeeController {
 
-    private EmployeeRepository repository;
+    private final EmployeeRepository repository;
 
     EmployeeController(EmployeeRepository employeeRepository) {
         this.repository = employeeRepository;
@@ -42,7 +42,7 @@ public class EmployeeController {
             record.setManager(employee.getManager());
             record.setIncome(employee.getIncome());
 
-            Employee updated = repository.save(record);
+            final Employee updated = repository.save(record);
             return ResponseEntity.ok().body(updated);
 
         }).orElse(ResponseEntity.notFound().build());
