@@ -6,6 +6,7 @@ import com.raulmello.crud.services.EmployeeServices;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -35,6 +36,11 @@ public class EmployeeController {
     @PutMapping("/employee/{id}")
     public ResponseEntity update(@PathVariable("id") long id, @RequestBody Employee employee) {
         return employeeServices.update(id, employee);
+    }
+
+    @PatchMapping("/employee/{id}")
+    public ResponseEntity partiallyUpdate(@PathVariable("id") long id, @RequestBody HashMap map) {
+        return employeeServices.partiallyUpdate(id, map);
     }
 
     @DeleteMapping("/employee/{id}")
